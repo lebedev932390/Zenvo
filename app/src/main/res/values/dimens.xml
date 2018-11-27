@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar_height">48dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="double_button_height">96dp</dimen>
+
+
+
+
+    <dimen name="double_margin">32dp</dimen>
+    <dimen name="margin">16dp</dimen>
+    <dimen name="half_margin">8dp</dimen>
+    <dimen name="quarter_margin">4dp</dimen>
+</resources>

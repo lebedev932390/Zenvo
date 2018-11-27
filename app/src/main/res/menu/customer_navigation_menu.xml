@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    tool:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/customer_main_item"
+        android:icon="@drawable/ic_dot"
+        android:title="Главная" />
+    <item
+        android:id="@+id/customer_constructor_item"
+        android:icon="@drawable/ic_dot"
+
+        android:title="Конструктор" />
+
+        <item
+        android:id="@+id/customer_tenders_item"
+            android:icon="@drawable/ic_dot"
+
+            android:title="Тендеры" />
+    <item
+        android:id="@+id/customer_events_item"
+        android:icon="@drawable/ic_dot"
+
+        android:title="Мои мероприятия" />
+    <item
+        android:id="@+id/customer_account_settings_item"
+        android:icon="@drawable/ic_dot"
+
+        android:title="Настройки" />
+    <item
+        android:id="@+id/customer_favorite_contractors_item"
+        android:icon="@drawable/ic_dot"
+
+        android:title="Корзина исполнителей" />
+    <item
+        android:id="@+id/customer_about_company_item"
+        android:icon="@drawable/ic_dot"
+
+        android:title="О компании" />
+    </group>
+</menu>
