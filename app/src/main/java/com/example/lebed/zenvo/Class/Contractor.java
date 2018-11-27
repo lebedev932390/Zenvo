@@ -4,12 +4,17 @@ import android.media.Image;
 
 public class Contractor {
 
+    private int avatar;
     private String firstName;
     private String lastName;
     private Double rating;
     private Integer numberOfReviews;
     private String city;
     private boolean inFavorites;
+
+    public int getAvatar() {
+        return avatar;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -35,22 +40,18 @@ public class Contractor {
         return inFavorites;
     }
 
-    public Image getAvatar() {
-        return avatar;
-    }
+    public Contractor(int avatar, String firstName, String lastName, Double rating, Integer numberOfReviews, String city, boolean inFavorites) {
 
-    public Contractor(String firstName, String lastName, Double rating, Integer numberOfReviews, String city, boolean inFavorites, Image avatar) {
-
+        this.avatar = avatar;
         this.firstName = firstName;
         this.lastName = lastName;
         this.rating = rating;
         this.numberOfReviews = numberOfReviews;
         this.city = city;
         this.inFavorites = inFavorites;
-        this.avatar = avatar;
     }
 
-    private Image avatar;
+
 
 
 }

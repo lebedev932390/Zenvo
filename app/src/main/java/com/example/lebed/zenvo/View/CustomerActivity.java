@@ -16,7 +16,7 @@ import com.example.lebed.zenvo.View.CustomerFragments.CustomerAccountSettingsFra
 import com.example.lebed.zenvo.View.CustomerFragments.CustomerConstructorFragment;
 import com.example.lebed.zenvo.View.CustomerFragments.CustomerEventsFragment;
 import com.example.lebed.zenvo.View.CustomerFragments.CustomerFavoriteContractorsFragment;
-import com.example.lebed.zenvo.View.CustomerFragments.CustomerMainFragment;
+import com.example.lebed.zenvo.View.CustomerFragments.Main.CustomerMainFragment;
 import com.example.lebed.zenvo.View.CustomerFragments.CustomerTendersFragment;
 
 public class CustomerActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
