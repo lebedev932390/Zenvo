@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lebed.zenvo.View.CustomerActivity;
 import com.example.lebed.zenvo.View.CustomerMainFilterActivity;
 import com.example.lebed.zenvo.R;
 import com.example.lebed.zenvo.View.CustomerContractorActivity;
@@ -50,7 +51,7 @@ public class CustomerMainFragment extends Fragment implements View.OnClickListen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_customer_main, container, false);
-        init();
+        contractorsList = ((CustomerActivity)getActivity()).getListOfContractors();
         final FloatingActionButton filterButton = view.findViewById(R.id.customer_fragment_main_filter_button);
         filterButton.setOnClickListener(this);
 
@@ -101,42 +102,37 @@ public class CustomerMainFragment extends Fragment implements View.OnClickListen
         return view;
     }
 
-    private void init(){
-        contractorsList = new ArrayList<>();
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
-        contractorsList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
+    //private void init(){
+    //    contractorsList = new ArrayList<>();
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
+    //    contractorsList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
+////
 //
+//
+//
+//
+//
+    //}
 
 
-
-
-
-    }
-
-    private RoundedBitmapDrawable roundDrawable(int id){
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), id);
-        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
-        roundedBitmapDrawable.setCircular(true);
-        return roundedBitmapDrawable;
-    }
 
 
 

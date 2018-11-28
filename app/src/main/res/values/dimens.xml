@@ -6,9 +6,16 @@
 
 
 
+    <dimen name="edit_text_height">32dp</dimen>
+    <dimen name="stroke_width">1dp</dimen>
+
+
+
 
     <dimen name="double_margin">32dp</dimen>
     <dimen name="margin">16dp</dimen>
     <dimen name="half_margin">8dp</dimen>
     <dimen name="quarter_margin">4dp</dimen>
+
+    <dimen name="elevation">2dp</dimen>
 </resources>

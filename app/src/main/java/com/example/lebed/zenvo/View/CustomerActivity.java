@@ -1,7 +1,11 @@
 package com.example.lebed.zenvo.View;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,18 +20,28 @@ import com.example.lebed.zenvo.View.CustomerFragments.CustomerAccountSettingsFra
 import com.example.lebed.zenvo.View.CustomerFragments.CustomerConstructorFragment;
 import com.example.lebed.zenvo.View.CustomerFragments.CustomerEventsFragment;
 import com.example.lebed.zenvo.View.CustomerFragments.CustomerFavoriteContractorsFragment;
+import com.example.lebed.zenvo.View.CustomerFragments.Main.CardContractor;
 import com.example.lebed.zenvo.View.CustomerFragments.Main.CustomerMainFragment;
 import com.example.lebed.zenvo.View.CustomerFragments.CustomerTendersFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
+    private List<CardContractor> contractorList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
         init();
+    }
+
+    public List<CardContractor> getListOfContractors(){
+
+        return contractorList;
     }
 
     private void init() {
@@ -38,11 +52,39 @@ public class CustomerActivity extends AppCompatActivity implements View.OnClickL
         NavigationView navigationView = findViewById(R.id.customer_navigation_menu);
         navigationView.setNavigationItemSelectedListener(this);
 
+        contractorList = new ArrayList<>();
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.mask),"Елон Маск", "4.7","Марс", "Отзывов: 32"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.penelopa),"Пенелопа Крус", "4.1","Щучин", "Отзывов: 98"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.peris),"Сергей Светлаков", "2.7","Светлогорск", "Отзывов: 8"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.tea),"Золотая Чаша", "3.1","Кухонный шкафчик", "Отзывов: 41"));
+        contractorList.add(new CardContractor(roundDrawable(R.drawable.gosling),"Райан Гослинг", "4.9","Зельва", "Отзывов: 56"));
+
         getSupportFragmentManager().beginTransaction().replace(R.id.customer_fragment_container,
                 new CustomerMainFragment()).commit();
         navigationView.setCheckedItem(R.id.customer_main_item);
 
 
+    }
+    private RoundedBitmapDrawable roundDrawable(int id){
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), id);
+        RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), bitmap);
+        roundedBitmapDrawable.setCircular(true);
+        return roundedBitmapDrawable;
     }
 
     @Override
