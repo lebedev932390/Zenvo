@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.CustomerMainFilterActivity">
-
     <RelativeLayout
         android:id="@+id/customer_main_filter_toolbar"
         android:layout_width="match_parent"
@@ -18,274 +17,325 @@
         <ImageButton
             android:id="@+id/customer_main_filter_back_button"
             android:layout_width="36dp"
+            android:layout_alignParentStart="true"
             android:layout_height="36dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_arrow_back_white" />
+        <ImageButton
+            android:id="@+id/customer_main_filter_done_button"
+            android:layout_width="36dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_done_white"
+            android:layout_height="36dp" />
 
     </RelativeLayout>
 
-    <LinearLayout
+
+    <ScrollView
+        android:layout_below="@id/customer_main_filter_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/customer_main_filter_toolbar"
-        android:orientation="vertical"
-        android:padding="12dp">
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_text_height"
-            android:layout_margin="@dimen/quarter_margin"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_below="@id/customer_main_filter_toolbar"
+            android:orientation="vertical"
+            android:padding="12dp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="start|center_vertical"
-                android:paddingStart="@dimen/half_margin"
-                android:text="Сортировка:" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/half_margin"
-                android:layout_weight="2"
-                android:background="@drawable/edit_text">
 
-                <CheckBox
-                    android:id="@+id/customer_filer_price_checkbox"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/ckecbox_left"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Цена"
-                    android:textColor="@drawable/checkbox_text_color" />
+            <CheckBox
+                android:id="@+id/customer_filter_sort_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="@dimen/quarter_margin"
+                android:layout_marginBottom="@dimen/quarter_margin"
+                android:background="@drawable/checkbox_full"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Сортировка"
+                android:textColor="@drawable/checkbox_text_color">
 
-                <TableRow
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary">
 
-                </TableRow>
+            </CheckBox>
 
-                <CheckBox
-                    android:id="@+id/customer_filer_rating_checkbox"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/checkbox_right"
 
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="Рейтинг"
-                    android:textColor="@drawable/checkbox_text_color" />
-            </LinearLayout>
-        </LinearLayout>
+            <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
+                android:id="@+id/sort_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_text_height"
-            android:layout_margin="@dimen/quarter_margin"
-            android:orientation="horizontal">
+            </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="start|center_vertical"
-                android:paddingStart="@dimen/half_margin"
-                android:text="Цена:" />
+
+
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/half_margin"
-                android:layout_weight="2"
-                android:background="@drawable/edit_text">
-
-                <EditText
-                    android:id="@+id/customer_filter_price_start"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/ckecbox_left"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:hint="От"
-                    android:inputType="number"
-                    android:maxLength="6"
-
-                    android:textColor="@drawable/checkbox_text_color"
-                    android:textColorHint="@color/colorPrimary"
-                    android:textSize="14sp" />
-
-                <TableRow
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary">
-
-                </TableRow>
-
-                <EditText
-                    android:id="@+id/customer_filter_price_end"
-
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/checkbox_right"
-                    android:button="@null"
-
-                    android:gravity="center"
-                    android:hint="До"
-                    android:inputType="number"
-                    android:maxLength="6"
-                    android:textColor="@drawable/checkbox_text_color"
-
-                    android:textColorHint="@color/colorPrimary"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_text_height"
-            android:layout_margin="@dimen/quarter_margin"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="start|center_vertical"
-                android:paddingStart="@dimen/half_margin"
-                android:text="Дата:" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/half_margin"
-                android:layout_weight="2"
-                android:background="@drawable/edit_text">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_margin="@dimen/quarter_margin"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/customer_filter_start_date"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="От"
-                    android:textColor="@drawable/checkbox_text_color" />
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="@dimen/half_margin"
+                    android:text="Цена:" />
 
-                <TableRow
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary">
-
-                </TableRow>
-
-                <TextView
-                    android:id="@+id/customer_filter_end_date"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="До"
-                    android:textColor="@drawable/checkbox_text_color" />
+                    android:layout_marginStart="@dimen/half_margin"
+                    android:layout_weight="2"
+                    android:background="@drawable/edit_text">
+
+                    <EditText
+                        android:id="@+id/customer_filter_price_start"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/ckecbox_left"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:hint="От"
+                        android:inputType="number"
+                        android:maxLength="6"
+
+                        android:textColor="@drawable/checkbox_text_color"
+                        android:textColorHint="@color/colorPrimary"
+                        android:textSize="14sp" />
+
+                    <TableRow
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary">
+
+                    </TableRow>
+
+                    <EditText
+                        android:id="@+id/customer_filter_price_end"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/checkbox_right"
+                        android:button="@null"
+
+                        android:gravity="center"
+                        android:hint="До"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:textColor="@drawable/checkbox_text_color"
+
+                        android:textColorHint="@color/colorPrimary"
+                        android:textSize="14sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_text_height"
-            android:layout_margin="@dimen/quarter_margin"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="start|center_vertical"
-                android:paddingStart="@dimen/half_margin"
-                android:text="Рейтинг:" />
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/half_margin"
-                android:layout_weight="2"
-                android:background="@drawable/edit_text">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_margin="@dimen/quarter_margin"
+                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/customer_filter_rating_start"
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/ckecbox_left"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:hint="От"
-                    android:inputType="number"
-                    android:maxLength="1"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="@dimen/half_margin"
+                    android:text="Дата:" />
 
-                    android:textColor="@drawable/checkbox_text_color"
-                    android:textColorHint="@color/colorPrimary"
-                    android:textSize="14sp" />
-
-                <TableRow
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary">
-
-                </TableRow>
-
-                <EditText
-                    android:id="@+id/customer_filter_rating_end"
-
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/checkbox_right"
-                    android:button="@null"
-                    android:gravity="center"
+                    android:layout_marginStart="@dimen/half_margin"
+                    android:layout_weight="2"
+                    android:background="@drawable/edit_text">
 
-                    android:hint="До"
-                    android:inputType="number"
-                    android:maxLength="1"
-                    android:textColor="@drawable/checkbox_text_color"
+                    <TextView
+                        android:id="@+id/customer_filter_start_date"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="От"
+                        android:textColor="@drawable/checkbox_text_color" />
 
-                    android:textColorHint="@color/colorPrimary"
-                    android:textSize="14sp" />
+                    <TableRow
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary">
+
+                    </TableRow>
+
+                    <TextView
+                        android:id="@+id/customer_filter_end_date"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="До"
+                        android:textColor="@drawable/checkbox_text_color" />
+                </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_margin="@dimen/quarter_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="@dimen/half_margin"
+                    android:text="Рейтинг:" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/half_margin"
+                    android:layout_weight="2"
+                    android:background="@drawable/edit_text">
+
+                    <EditText
+                        android:id="@+id/customer_filter_rating_start"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/ckecbox_left"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:hint="От"
+                        android:inputType="number"
+                        android:maxLength="1"
+
+                        android:textColor="@drawable/checkbox_text_color"
+                        android:textColorHint="@color/colorPrimary"
+                        android:textSize="14sp" />
+
+                    <TableRow
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary">
+
+                    </TableRow>
+
+                    <EditText
+                        android:id="@+id/customer_filter_rating_end"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/checkbox_right"
+                        android:button="@null"
+                        android:gravity="center"
+
+                        android:hint="До"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textColor="@drawable/checkbox_text_color"
+
+                        android:textColorHint="@color/colorPrimary"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+            <CheckBox
+                android:id="@+id/customer_filter_locations_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="@dimen/quarter_margin"
+                android:layout_marginBottom="@dimen/quarter_margin"
+                android:background="@drawable/checkbox_full"
+                android:button="@null"
+                android:gravity="center"
+                android:text="Город"
+                android:textColor="@drawable/checkbox_text_color">
+
+
+            </CheckBox>
+
+
+            <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
+                android:id="@+id/locations_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+            </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
+
+            <CheckBox
+                android:id="@+id/customer_filter_photographers_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="@dimen/quarter_margin"
+                android:layout_marginBottom="@dimen/quarter_margin"
+                android:background="@drawable/checkbox_full"
+                android:button="@null"
+
+                android:gravity="center"
+                android:text="Фотографы"
+                android:textColor="@drawable/checkbox_text_color">
+
+
+            </CheckBox>
+
+
+            <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
+                android:id="@+id/photographers_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+            </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
+
+            <CheckBox
+                android:id="@+id/customer_filter_entertainment_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_height"
+                android:layout_marginTop="@dimen/quarter_margin"
+                android:layout_marginBottom="@dimen/quarter_margin"
+                android:background="@drawable/checkbox_full"
+                android:button="@null"
+
+                android:gravity="center"
+                android:text="Развлечения"
+                android:textColor="@drawable/checkbox_text_color">
+
+
+            </CheckBox>
+
+
+            <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
+                android:id="@+id/entertainment_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+            </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
+
+
+
+
         </LinearLayout>
 
-
-        <Button
-            android:id="@+id/filter_location_button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/edit_text_height"
-            android:layout_margin="@dimen/quarter_margin"
-            android:background="@drawable/button"
-            android:gravity="center"
-            android:text="Локация"
-
-            android:textAllCaps="false"
-            android:textColor="@drawable/button_text_color">
+    </ScrollView>
 
 
-        </Button>
-
-
-        <ExpandableListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ExpandableListView>
-
-
-    </LinearLayout>
 
 </RelativeLayout>

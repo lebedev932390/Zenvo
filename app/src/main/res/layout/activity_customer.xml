@@ -32,9 +32,11 @@
 
         <FrameLayout
             android:id="@+id/customer_fragment_container"
-            android:layout_below="@id/customer_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/customer_toolbar"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="-4dp">
 
         </FrameLayout>
     </RelativeLayout>
