@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.CustomerMainFilterActivity">
+
     <RelativeLayout
         android:id="@+id/customer_main_filter_toolbar"
         android:layout_width="match_parent"
@@ -17,61 +18,34 @@
         <ImageButton
             android:id="@+id/customer_main_filter_back_button"
             android:layout_width="36dp"
-            android:layout_alignParentStart="true"
             android:layout_height="36dp"
+            android:layout_alignParentStart="true"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_arrow_back_white" />
+
         <ImageButton
             android:id="@+id/customer_main_filter_done_button"
             android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_alignParentEnd="true"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_done_white"
-            android:layout_height="36dp" />
+            android:src="@drawable/ic_done_white" />
 
     </RelativeLayout>
 
 
+
     <ScrollView
-        android:layout_below="@id/customer_main_filter_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/customer_main_filter_toolbar"
         android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/customer_main_filter_toolbar"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="12dp">
-
-
-
-            <CheckBox
-                android:id="@+id/customer_filter_sort_checkbox"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/edit_text_height"
-                android:layout_marginTop="@dimen/quarter_margin"
-                android:layout_marginBottom="@dimen/quarter_margin"
-                android:background="@drawable/checkbox_full"
-                android:button="@null"
-                android:gravity="center"
-                android:text="Сортировка"
-                android:textColor="@drawable/checkbox_text_color">
-
-
-            </CheckBox>
-
-
-            <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
-                android:id="@+id/sort_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone">
-
-            </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
-
-
 
 
             <LinearLayout
@@ -106,7 +80,7 @@
                         android:hint="От"
                         android:inputType="number"
                         android:maxLength="6"
-
+                        android:imeOptions="actionDone"
                         android:textColor="@drawable/checkbox_text_color"
                         android:textColorHint="@color/colorPrimary"
                         android:textSize="14sp" />
@@ -120,7 +94,7 @@
 
                     <EditText
                         android:id="@+id/customer_filter_price_end"
-
+                        android:imeOptions="actionDone"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -220,7 +194,7 @@
                         android:hint="От"
                         android:inputType="number"
                         android:maxLength="1"
-
+                        android:imeOptions="actionDone"
                         android:textColor="@drawable/checkbox_text_color"
                         android:textColorHint="@color/colorPrimary"
                         android:textSize="14sp" />
@@ -241,7 +215,7 @@
                         android:background="@drawable/checkbox_right"
                         android:button="@null"
                         android:gravity="center"
-
+                        android:imeOptions="actionDone"
                         android:hint="До"
                         android:inputType="number"
                         android:maxLength="1"
@@ -254,9 +228,8 @@
 
 
 
-
             <CheckBox
-                android:id="@+id/customer_filter_locations_checkbox"
+                android:id="@+id/customer_filter_sort_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edit_text_height"
                 android:layout_marginTop="@dimen/quarter_margin"
@@ -264,78 +237,170 @@
                 android:background="@drawable/checkbox_full"
                 android:button="@null"
                 android:gravity="center"
-                android:text="Город"
+                android:text="Сортировка"
                 android:textColor="@drawable/checkbox_text_color">
 
 
             </CheckBox>
-
-
             <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
-                android:id="@+id/locations_list"
+                android:id="@+id/sort_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:visibility="gone">
 
             </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
 
+
+
+
             <CheckBox
-                android:id="@+id/customer_filter_photographers_checkbox"
+                android:id="@+id/customer_filter_chose_location_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edit_text_height"
                 android:layout_marginTop="@dimen/quarter_margin"
                 android:layout_marginBottom="@dimen/quarter_margin"
                 android:background="@drawable/checkbox_full"
                 android:button="@null"
-
                 android:gravity="center"
-                android:text="Фотографы"
+                android:text="Выбрать город"
                 android:textColor="@drawable/checkbox_text_color">
 
 
             </CheckBox>
-
-
-            <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
-                android:id="@+id/photographers_list"
+            <LinearLayout
+                android:id="@+id/locations_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:visibility="gone">
 
-            </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
+
+                <CheckBox
+                    android:id="@+id/customer_filter_minsk_region_checkbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/quarter_margin"
+                    android:layout_marginBottom="@dimen/quarter_margin"
+                    android:background="@drawable/checkbox_full"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Минская область"
+                    android:textColor="@drawable/checkbox_text_color">
+
+
+                </CheckBox>
+                <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
+                    android:id="@+id/minks_region_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
+
+
+                <CheckBox
+                    android:id="@+id/customer_filter_grodno_region_checkbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/quarter_margin"
+                    android:layout_marginBottom="@dimen/quarter_margin"
+                    android:background="@drawable/checkbox_full"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Гродненская область"
+                    android:textColor="@drawable/checkbox_text_color">
+
+
+                </CheckBox>
+                <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
+                    android:id="@+id/grondo_region_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
+
+
+            </LinearLayout>
+
 
             <CheckBox
-                android:id="@+id/customer_filter_entertainment_checkbox"
+                android:id="@+id/customer_filter_chose_contractor_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edit_text_height"
                 android:layout_marginTop="@dimen/quarter_margin"
                 android:layout_marginBottom="@dimen/quarter_margin"
                 android:background="@drawable/checkbox_full"
                 android:button="@null"
-
                 android:gravity="center"
-                android:text="Развлечения"
+                android:text="Выбрать специализацию исполнителя"
                 android:textColor="@drawable/checkbox_text_color">
 
 
             </CheckBox>
-
-
-            <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
-                android:id="@+id/entertainment_list"
+            <LinearLayout
+                android:id="@+id/layout_contractors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:visibility="gone">
 
-            </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
+
+                <CheckBox
+                    android:id="@+id/customer_filter_photographers_checkbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/quarter_margin"
+                    android:layout_marginBottom="@dimen/quarter_margin"
+                    android:background="@drawable/checkbox_full"
+                    android:button="@null"
+
+                    android:gravity="center"
+                    android:text="Фотографы"
+                    android:textColor="@drawable/checkbox_text_color">
 
 
+                </CheckBox>
+                <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
+                    android:id="@+id/photographers_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
+
+
+
+                <CheckBox
+                    android:id="@+id/customer_filter_entertainment_checkbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edit_text_height"
+                    android:layout_marginTop="@dimen/quarter_margin"
+                    android:layout_marginBottom="@dimen/quarter_margin"
+                    android:background="@drawable/checkbox_full"
+                    android:button="@null"
+
+                    android:gravity="center"
+                    android:text="Развлечения"
+                    android:textColor="@drawable/checkbox_text_color">
+
+
+                </CheckBox>
+
+                <com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView
+                    android:id="@+id/entertainment_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                </com.example.lebed.zenvo.View.CustomerFragments.NonScrollableListView>
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,12 +26,15 @@ public class CustomerMainFilterActivity extends AppCompatActivity implements Vie
 
     private ArrayList<String> selectedSort = new ArrayList<>();
     private NonScrollableListView listViewSort;
-    private String[] sort = {"По возрастанию рейтинга","По убыванию рейтинга", "По возрастанию цены", "По убыванию цены"};
+    private String[] sort = {"По убыванию рейтинга","По возрастанию рейтинга", "По убыванию цены", "По возрастанию цены"};
 
 
     private ArrayList<String> selectedLocations = new ArrayList<>();
-    private NonScrollableListView listViewLocation;
-    private String[] locations = {"Минск", "Гродно", "Витебск", "Могилев"};
+    private NonScrollableListView listViewMinskRegionLocation;
+    private String[] minskRegionLocations = {"Минск", "Еще один", "И еще один", "Ну и еще один"};
+
+    private NonScrollableListView listViewGrondoRegionLocation;
+    private String[] grodnoRegionLocations = {"Гродно", "Слоним", "Барановичи", "Зельва"};
 
     private ArrayList<String> selectedEntertainment = new ArrayList<>();
     private NonScrollableListView listViewEntertainment;
@@ -44,14 +48,14 @@ public class CustomerMainFilterActivity extends AppCompatActivity implements Vie
 
 
 
-
     Long startDate = null;
     Long endDate = null;
 
     private TextView textViewStartDate, textViewEndDate;
 
 
-    private CheckBox checkBoxSort, checkBoxLocation, checkBoxEntertainment, checkBoxPhotographers;
+    private CheckBox checkBoxSort, checkBoxChoseLocation, checkBoxMinskRegion, checkBoxGrodnoRegion, checkBoxChoseContractor, checkBoxEntertainment, checkBoxPhotographers;
+    private LinearLayout linearLayoutLocations, linearLayoutContractors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,15 @@ public class CustomerMainFilterActivity extends AppCompatActivity implements Vie
 
     private void initListViews(){
 
+        checkBoxChoseLocation = findViewById(R.id.customer_filter_chose_location_checkbox);
+        checkBoxChoseLocation.setOnClickListener(this);
+        linearLayoutLocations = findViewById(R.id.locations_layout);
+
+        checkBoxChoseContractor = findViewById(R.id.customer_filter_chose_contractor_checkbox);
+        checkBoxChoseContractor.setOnClickListener(this);
+        linearLayoutContractors = findViewById(R.id.layout_contractors);
+
+
         checkBoxSort = findViewById(R.id.customer_filter_sort_checkbox);
         checkBoxSort.setOnClickListener(this);
         listViewSort = findViewById(R.id.sort_list);
@@ -73,14 +86,14 @@ public class CustomerMainFilterActivity extends AppCompatActivity implements Vie
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selected = ((CheckedTextView)view).getText().toString();
-                if (selectedLocations.contains(selected)){
-                    selectedLocations.remove(selected);
+                if (selectedSort.contains(selected)){
+                    selectedSort.remove(selected);
                     listViewSort.setItemChecked(position,false);
-                    Log.e("selectedTotal", Integer.toString(selectedLocations.size()));
+                    Log.e("selectedTotal", Integer.toString(selectedSort.size()));
                 } else {
-                    listViewSort.setItemChecked(position,true);
-                    selectedLocations.add(selected);
-                    Log.e("selectedTotal", Integer.toString(selectedLocations.size()));
+                    selectedSort.clear();
+                    selectedSort.add(selected);
+                    Log.e("selectedTotal", Integer.toString(selectedSort.size()));
 
                 }
             }
@@ -88,13 +101,34 @@ public class CustomerMainFilterActivity extends AppCompatActivity implements Vie
 
 
 
-        checkBoxLocation = findViewById(R.id.customer_filter_locations_checkbox);
-        checkBoxLocation.setOnClickListener(this);
-        listViewLocation = findViewById(R.id.locations_list);
-        listViewLocation.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        ArrayAdapter<String> locationsAdapter = new ArrayAdapter<String>(this,R.layout.filter_item, R.id.txt_lan, locations);
-        listViewLocation.setAdapter(locationsAdapter);
-        listViewLocation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        checkBoxMinskRegion = findViewById(R.id.customer_filter_minsk_region_checkbox);
+        checkBoxMinskRegion.setOnClickListener(this);
+        listViewMinskRegionLocation = findViewById(R.id.minks_region_list);
+        listViewMinskRegionLocation.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        ArrayAdapter<String> minskRegionAdapter = new ArrayAdapter<String>(this,R.layout.filter_item, R.id.txt_lan, minskRegionLocations);
+        listViewMinskRegionLocation.setAdapter(minskRegionAdapter);
+        listViewMinskRegionLocation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selected = ((CheckedTextView)view).getText().toString();
+                if (selectedLocations.contains(selected)){
+                    selectedLocations.remove(selected);
+                    Log.e("selectedTotal", Integer.toString(selectedLocations.size()));
+                } else {
+                    selectedLocations.add(selected);
+                    Log.e("selectedTotal", Integer.toString(selectedLocations.size()));
+
+                }
+            }
+        });
+
+        checkBoxGrodnoRegion = findViewById(R.id.customer_filter_grodno_region_checkbox);
+        checkBoxGrodnoRegion.setOnClickListener(this);
+        listViewGrondoRegionLocation = findViewById(R.id.grondo_region_list);
+        listViewGrondoRegionLocation.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        ArrayAdapter<String> grodnoRegionAdapter = new ArrayAdapter<String>(this,R.layout.filter_item, R.id.txt_lan, grodnoRegionLocations);
+        listViewGrondoRegionLocation.setAdapter(grodnoRegionAdapter);
+        listViewGrondoRegionLocation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selected = ((CheckedTextView)view).getText().toString();
@@ -112,7 +146,7 @@ public class CustomerMainFilterActivity extends AppCompatActivity implements Vie
         checkBoxPhotographers = findViewById(R.id.customer_filter_photographers_checkbox);
         checkBoxPhotographers.setOnClickListener(this);
         listViewPhotographers = findViewById(R.id.photographers_list);
-        listViewPhotographers.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listViewPhotographers.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         ArrayAdapter<String> photographersAdapter = new ArrayAdapter<String>(this,R.layout.filter_item, R.id.txt_lan, photographers);
         listViewPhotographers.setAdapter(photographersAdapter);
         listViewPhotographers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -133,7 +167,7 @@ public class CustomerMainFilterActivity extends AppCompatActivity implements Vie
         checkBoxEntertainment = findViewById(R.id.customer_filter_entertainment_checkbox);
         checkBoxEntertainment.setOnClickListener(this);
         listViewEntertainment = findViewById(R.id.entertainment_list);
-        listViewEntertainment.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listViewEntertainment.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         ArrayAdapter<String> entertainmentAdapter = new ArrayAdapter<String>(this,R.layout.filter_item, R.id.txt_lan, entertainment);
         listViewEntertainment.setAdapter(entertainmentAdapter);
         listViewEntertainment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -141,11 +175,11 @@ public class CustomerMainFilterActivity extends AppCompatActivity implements Vie
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selected = ((CheckedTextView)view).getText().toString();
                 if (selectedEntertainment.contains(selected)){
-                    selectedPhotographers.remove(selected);
-                    Log.e("selectedTotal", Integer.toString(selectedPhotographers.size()));
+                    selectedEntertainment.remove(selected);
+                    Log.e("selectedTotal", Integer.toString(selectedEntertainment.size()));
                 } else {
                     selectedPhotographers.add(selected);
-                    Log.e("selectedTotal", Integer.toString(selectedPhotographers.size()));
+                    Log.e("selectedTotal", Integer.toString(selectedEntertainment.size()));
 
                 }
             }
@@ -202,12 +236,12 @@ public class CustomerMainFilterActivity extends AppCompatActivity implements Vie
 
                 break;
 
-            case R.id.customer_filter_locations_checkbox:
-                if (checkBoxLocation.isChecked()){
-                    listViewLocation.setVisibility(View.VISIBLE);
+            case R.id.customer_filter_minsk_region_checkbox:
+                if (checkBoxMinskRegion.isChecked()){
+                    listViewMinskRegionLocation.setVisibility(View.VISIBLE);
                 }
                 else {
-                    listViewLocation.setVisibility(View.GONE);
+                    listViewMinskRegionLocation.setVisibility(View.GONE);
                 }
                 break;
             case R.id.customer_filter_photographers_checkbox:
@@ -225,6 +259,32 @@ public class CustomerMainFilterActivity extends AppCompatActivity implements Vie
                 }
                 else {
                     listViewEntertainment.setVisibility(View.GONE);
+                }
+                break;
+
+            case R.id.customer_filter_chose_location_checkbox:
+                if (checkBoxChoseLocation.isChecked()){
+                    linearLayoutLocations.setVisibility(View.VISIBLE);
+                }
+                else {
+                    linearLayoutLocations.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.customer_filter_grodno_region_checkbox:
+                if (checkBoxGrodnoRegion.isChecked()){
+                    listViewGrondoRegionLocation.setVisibility(View.VISIBLE);
+                }
+                else {
+                    listViewGrondoRegionLocation.setVisibility(View.GONE);
+                }
+                break;
+
+            case R.id.customer_filter_chose_contractor_checkbox:
+                if (checkBoxChoseContractor.isChecked()){
+                    linearLayoutContractors.setVisibility(View.VISIBLE);
+                }
+                else {
+                    linearLayoutContractors.setVisibility(View.GONE);
                 }
                 break;
         }
